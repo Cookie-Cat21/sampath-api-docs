@@ -1,15 +1,15 @@
 {
-  "sha256": "3cc77dc0002feb9b32041463bd30b8a1797bae6efc2cf092d2b25377a4b6dde2",
+  "sha256": "f4f608a29e700a717e66d45d0216f4b41d1e1be4e3fd7231c5fa62b906fa440b",
   "endpoint_count": 3,
   "endpoints": {
     "card_promotions_super_markets": {
       "id": "card_promotions_super_markets",
       "method": "GET",
       "path": "/api/card-promotions",
-      "url": "https://www.sampath.lk/api/card-promotions?category=super_markets&page_number=1&size=20",
+      "url": "https://www.sampath.lk/api/card-promotions?category=Premium_Offers&page_number=1&size=20",
       "status": "live",
       "access": "json_api",
-      "summary": "Supermarket card offers JSON.",
+      "summary": "Supermarket card offers JSON. NOTE (2026-09-14): this was a false-healthy bug (200 with empty data) \u2014 same root cause as the sl-bank-card-offers-docs repo: category=super_markets no longer exists (real categories are Premium_Offers/VISA_Offers/Mastercard_Offers), and the API needs headers locale: en + platform: web or it silently returns {\"data\":[],\"total\":N}. Fixed to a valid category + required headers. There is no server-side \"supermarket\" category anymore; true supermarket-only filtering needs client-side matching on company_name/description across all 3 categories.",
       "pagination": {
         "style": "page_number",
         "params": {
@@ -39,6 +39,5 @@
       "summary": "local.term_and_deposite FD slabs + savings.",
       "pagination": null
     }
-  },
-  "updated": "2026-07-20"
+  }
 }
