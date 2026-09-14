@@ -22,9 +22,20 @@ endpoints:
   access: json_api
 - id: card_promotions_super_markets
   method: GET
-  url: https://www.sampath.lk/api/card-promotions?category=super_markets&page_number=1&size=20
+  url: https://www.sampath.lk/api/card-promotions?category=Premium_Offers&page_number=1&size=20
   path: /api/card-promotions
-  summary: Supermarket card offers JSON.
+  summary: 'Supermarket card offers JSON. NOTE (2026-09-14): this was a
+    false-healthy bug (200 with empty data) — same root cause as the
+    sl-bank-card-offers-docs repo: category=super_markets no longer exists
+    (real categories are Premium_Offers/VISA_Offers/Mastercard_Offers), and
+    the API needs headers locale: en + platform: web or it silently returns
+    {"data":[],"total":N}. Fixed to a valid category + required headers.
+    There is no server-side "supermarket" category anymore; true
+    supermarket-only filtering needs client-side matching on
+    company_name/description across all 3 categories.'
+  headers:
+    locale: en
+    platform: web
   pagination:
     style: page_number
     params:
